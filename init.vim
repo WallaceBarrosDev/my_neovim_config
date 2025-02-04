@@ -47,6 +47,8 @@ filetype indent on
 call plug#begin()
 
 Plug 'sainnhe/sonokai'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
@@ -63,5 +65,11 @@ let g:sonokai_enable_italic = 0
 let g:sonokai_disable_italic_comment = 0
 let g:sonokai_diagnostic_line_highlight = 1
 let g:sonokai_current_word = 'bold'
+let g:airline_theme = 'sonokai'
 
 colorscheme sonokai
+
+
+" AIRLINE "
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
