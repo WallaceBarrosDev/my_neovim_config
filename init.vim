@@ -1,3 +1,15 @@
+" PLUGINS "
+call plug#begin()
+    Plug 'sainnhe/sonokai'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'sheerun/vim-polyglot'
+    Plug 'preservim/nerdtree'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+call plug#end()
+
 " GLOBAL SETES " 
 syntax on
 set nu 
@@ -35,22 +47,15 @@ filetype indent on
 
 
 " REMAPS " 
-" ...
+let mapleader = " "
 
 
 " AUTOCMD " 
-" ...
-
-
-" PLUGINS " 
-
-call plug#begin()
-
-Plug 'sainnhe/sonokai'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-call plug#end()
+nmap <Leader>r :source $MYVIMRC<CR>
+nmap <Leader>i :PlugInstall<CR>
+nmap <Leader>w :w<CR>
+nmap <Leader>q :wq<CR>
+nmap <Leader>t :terminal<CR>
 
 
 " THEMES " 
@@ -70,6 +75,10 @@ let g:airline_theme = 'sonokai'
 colorscheme sonokai
 
 
-" AIRLINE "
+" AIRLINE " 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+
+
+" NERDTREE " 
+nmap <Leader>n :NERDTreeToggle<CR>
