@@ -55,9 +55,13 @@ nmap <Leader>b :bd<CR>
 " Abrir NERDTree "
 nmap <Leader>n :NERDTreeToggle<CR>
 
-" COMPILAR E EXECUTAR JAVA "
-nmap <Leader>cj :w<CR>:!javac %<CR>
-nmap <Leader>rj :w<CR>:!java %:r<CR>
+" Java "
+function! CompileAndRun()
+   73     let package = system("grep -m1 '^package' "
+      . expand('%') . " | awk '{print $2}' | tr -d ';'      ")                                                 74     let package = substitute(package, '\n', '',       '')                                                75     execute '!javac -d bin ' . expand('%')         76     execute '!java -cp bin ' . package . '.' . e      xpand('%:t:r')
+   77 endfunction
+" rodar Java "
+nmap <leader>r :call CompileAndRun()<CR>
 
 " TEMA "
 if exists('+termguicolors')
