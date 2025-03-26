@@ -88,9 +88,12 @@ let g:airline_powerline_fonts = 1
 " COC CONFIGURAÇÃO PARA JAVA "
 let g:coc_global_extensions = ['coc-java', 'coc-snippets']
 
-" AUTOCOMPLETE COM TAB "
-inoremap <expr> <TAB> pumvisible() ? coc#pum#confirm() : "\<TAB>"
-inoremap <expr> <S-TAB> pumvisible() ? coc#pum#previous() : "\<S-TAB>"
+" Faz o Tab e Shift+Tab navegarem pelas sugestões sem confirmar
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Faz o Enter confirmar a sugestão selecionada
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
 " NAVEGAÇÃO NO COC "
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -102,11 +105,3 @@ nmap <leader>f <Plug>(coc-format)
 
 " AIRLINE INTEGRAÇÃO COM COC "
 let g:airline#extensions#coc#enabled = 1
-
-" CONFIGURAÇÃO DO COC "
-{
-  "suggest.triggerAfterInsertEnter": true,
-  "suggest.enablePreview": true,
-  "suggest.minTriggerInputLength": 1,
-  "coc.preferences.snippetSupport": true
-}
