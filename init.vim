@@ -57,10 +57,13 @@ nmap <Leader>n :NERDTreeToggle<CR>
 
 " Java "
 function! CompileAndRun()
-   73     let package = system("grep -m1 '^package' "
-      . expand('%') . " | awk '{print $2}' | tr -d ';'      ")                                                 74     let package = substitute(package, '\n', '',       '')                                                75     execute '!javac -d bin ' . expand('%')         76     execute '!java -cp bin ' . package . '.' . e      xpand('%:t:r')
-   77 endfunction
-" rodar Java "
+   let package = system("grep -m1 '^package' " . expand('%') . " | awk '{print $2}' | tr -d ';'      ")                                                 
+   let package = substitute(package, '\n', '', '')                                                
+   execute '!javac -d bin ' . expand('%')         
+   execute '!java -cp bin ' . package . '.' . expand('%:t:r')
+endfunction
+
+" Rodar Java "
 nmap <leader>r :call CompileAndRun()<CR>
 
 " TEMA "
@@ -86,8 +89,8 @@ let g:airline_powerline_fonts = 1
 let g:coc_global_extensions = ['coc-java', 'coc-snippets']
 
 " AUTOCOMPLETE COM TAB "
-inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <TAB> pumvisible() ? coc#pum#confirm() : "\<TAB>"
+inoremap <expr> <S-TAB> pumvisible() ? coc#pum#previous() : "\<S-TAB>"
 
 " NAVEGAÇÃO NO COC "
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -96,3 +99,14 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>f <Plug>(coc-format)
+
+" AIRLINE INTEGRAÇÃO COM COC "
+let g:airline#extensions#coc#enabled = 1
+
+" CONFIGURAÇÃO DO COC "
+{
+  "suggest.triggerAfterInsertEnter": true,
+  "suggest.enablePreview": true,
+  "suggest.minTriggerInputLength": 1,
+  "coc.preferences.snippetSupport": true
+}
